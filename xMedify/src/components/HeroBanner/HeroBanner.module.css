@@ -1,0 +1,35 @@
+.herobanner{
+  padding: 1rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  height: 40vh;
+}
+
+
+.details div{
+  font-family: "Poppins";
+  font-size: large;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center ;
+  gap: 20px;
+  
+}
+
+.details span{
+  font-family: Poppins;
+font-weight: 500;
+font-size: 31px;
+line-height: 68px;
+letter-spacing: 2%;
+
+}
+.details p{
+  margin: 0px;
+  font-size: medium;
+}
+
+.doctorimg{
+  height: 100%;
+  
+}
