@@ -1,0 +1,21 @@
+.navbar{
+  padding: 10px 3rem;
+  background-color: var(--primary-bg-color);
+
+}
+.elements{
+   display: flex;
+   width: 80w;
+   justify-content: space-between;
+   align-items: center;
+  
+}
+.options{
+  display: flex;
+  width: 100%;
+  justify-content:space-evenly;
+  align-items: center;
+  font-size: large;
+  font-weight: 200;
+  font-family: var( --font-heading)
+}
