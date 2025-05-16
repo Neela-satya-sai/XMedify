@@ -20,7 +20,7 @@ function SearchCard() {
   async function performApiCall(url, setApiData) {
     try {
       let data = await axios.get(url);
-       console.log(data.data);
+      //  console.log(data.data);
       setApiData(data.data);
     } catch (error) {
       console.error(`the error is:${error}`);
@@ -73,7 +73,7 @@ function SearchCard() {
       
       setStateSelected("");
       setCitySelected("");
-      // console.log(medicalCenters);
+       console.log(medicalCenters);
 
     }else{
       enqueueSnackbar("please select both state and city",{variant:"warning"});
