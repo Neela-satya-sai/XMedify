@@ -1,0 +1,29 @@
+.bookingWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dateSelection button {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: lightgray;
+}
+
+.dateSelection .active {
+  background: blue;
+  color: white;
+}
+
+.timeSlots button {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  background: #f1f1f1;
+}
+
+.timeSlots .selected {
+  background: green;
+  color: white;
+}

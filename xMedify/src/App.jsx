@@ -1,20 +1,20 @@
-import React from 'react'
-import Navbar from './components/Navbar/Navbar'
-import HeroBanner from './components/HeroBanner/HeroBanner'
-import SearchCard from './components/SearchCard/SearchCard'
-import HospitalCard from './components/HospitalCard/HospitalCard'
-import HospitalListGrid from './components/HospitalListGrid/HospitalListGrid'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home/Home.jsx";
+import MyBookings from "./pages/MyBookings/MyBookings"; // Ensure this exists
+import ContextProvider from "./contextProvider.jsx";
 
 const App = () => {
   return (
-    <>
-    <Navbar></Navbar>
-    <HeroBanner></HeroBanner>
-   <SearchCard></SearchCard>
-   {/* <HospitalCard></HospitalCard> */}
-   <HospitalListGrid/>
-    </>
-  )
-}
+    <ContextProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/my-bookings" element={<MyBookings />} />
+        </Routes>
+      </BrowserRouter>
+    </ContextProvider>
+  );
+};
 
-export default App
+export default App;
