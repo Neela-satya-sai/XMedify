@@ -1,5 +1,5 @@
 .navbar{
-  padding: 10px 3rem;
+  padding: 10px 8%;
   background-color: var(--primary-bg-color);
 
 }
@@ -8,12 +8,13 @@
    width: 80w;
    justify-content: space-between;
    align-items: center;
+   gap: 400px;
   
 }
 .options{
   display: flex;
   width: 100%;
-  justify-content:space-evenly;
+  justify-content:space-between ;
   align-items: center;
   font-size: large;
   font-weight: 200;

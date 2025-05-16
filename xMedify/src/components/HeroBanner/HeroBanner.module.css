@@ -1,8 +1,9 @@
 .herobanner{
-  padding: 1rem 3rem;
+  padding: 1rem 8%;
   display: flex;
   justify-content: space-between;
   height: 40vh;
+  background: var( --primary-bg-color);
 }
 
 
@@ -17,19 +18,38 @@
 }
 
 .details span{
-  font-family: Poppins;
+  font-family: Poppins !important;
 font-weight: 500;
-font-size: 31px;
+font-size: 55px;
 line-height: 68px;
 letter-spacing: 2%;
 
 }
+.medical{
+  color: black;
+  font-weight: 800 !important;
+}
+.centers{
+  color: var(--secondary-bg-color);
+  font-weight: 800 !important;
+}
 .details p{
-  margin: 0px;
-  font-size: medium;
+
+  font-size:x-large;
+  font-family: Poppins;
 }
 
 .doctorimg{
   height: 100%;
-  
+  width: 100%;
+}
+
+.doctorimg img{
+  width: 100%;
+  height: 100%;
+  /* object-fit: cover;   */
+}
+
+h3{
+  margin-bottom: 0px;
 }
