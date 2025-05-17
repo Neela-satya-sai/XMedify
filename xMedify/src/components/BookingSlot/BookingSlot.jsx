@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from "./BookingSlot.module.css"; // Add relevant styles
 import { useApi } from "../../contextProvider";
 import Button from "../Button/Button";
+import { useCallback } from "react";
 
 const slotsData = [
   {
@@ -61,26 +62,50 @@ const BookingSlots = ({ eachMedicalData }) => {
   const [selectedDay, setSelectedDay] = useState("Today");
   const [selectedSlot, setSelectedSlot] = useState(null);
 
-  function bookingSlot(eachMedicalData) {
+
+  const bookingSlot = useCallback(() => {
+    if (!selectedSlot) return; // Ensure a slot is selected
+  
     let obj = {
-      "Hospital Name": eachMedicalData["Hospital Name"],
-      City: eachMedicalData.City,
-      State: eachMedicalData.State,
-      "ZIP Code": eachMedicalData["ZIP Code"],
+      "Hospital Name": eachMedicalData?.["Hospital Name"],
+      City: eachMedicalData?.City,
+      State: eachMedicalData?.State,
+      "ZIP Code": eachMedicalData?.["ZIP Code"],
       date: selectedDay,
       slot: selectedSlot,
     };
+  
     setBookings((prev) => {
-      const existingBookings =
-        JSON.parse(localStorage.getItem("bookings")) || [];
-      const updatedBookings = [...existingBookings, obj]; // Merge old bookings safely
+      const existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+      const updatedBookings = [...existingBookings, obj]; 
       localStorage.setItem("bookings", JSON.stringify(updatedBookings));
-      console.log(updatedBookings);
       return updatedBookings;
     });
-
     alert(`Booked slot for ${selectedDay} at ${selectedSlot}`);
-  }
+  }, [selectedDay, selectedSlot, eachMedicalData, setBookings]);
+    
+
+  // function bookingSlot() {
+  //   console.log(eachMedicalData);
+  //   let obj = {
+  //     "Hospital Name": eachMedicalData["Hospital Name"],
+  //     City: eachMedicalData.City,
+  //     State: eachMedicalData.State,
+  //     "ZIP Code": eachMedicalData["ZIP Code"],
+  //     date: selectedDay,
+  //     slot: selectedSlot,
+  //   };
+  //   setBookings((prev) => {
+  //     const existingBookings =
+  //       JSON.parse(localStorage.getItem("bookings")) || [];
+  //     const updatedBookings = [...existingBookings, obj]; // Merge old bookings safely
+  //     localStorage.setItem("bookings", JSON.stringify(updatedBookings));
+  //     console.log(updatedBookings);
+  //     return updatedBookings;
+  //   });
+
+  //   alert(`Booked slot for ${selectedDay} at ${selectedSlot}`);
+  // }
 
   return (
     <div className={styles.bookingWrapper}>

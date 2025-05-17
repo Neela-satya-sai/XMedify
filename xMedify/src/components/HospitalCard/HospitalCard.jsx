@@ -1,44 +1,67 @@
 import React, { useState } from "react";
 import styles from "./HospitalCard.module.css";
 import Button from "../Button/Button";
-import hospitalImg from "../../assets/hospitalCardIcons/image 22.png"
+import hospitalImg from "../../assets/hospitalCardIcons/image 22.png";
 import BookingSlots from "../BookingSlot/BookingSlot";
 
-function HospitalCard({eachMedicalData}) {
-    console.log(eachMedicalData);
-    let [bookingOpen, setBookingOpen] = useState(false);
+function HospitalCard({ eachMedicalData, booked }) {
+  console.log(eachMedicalData);
+  let [bookingOpen, setBookingOpen] = useState(false);
 
-   function handleBooking( ){
+  function handleBooking() {
     setBookingOpen(!bookingOpen);
-
-   } 
+  }
   return (
     <>
-    <div className={styles.hospitalCardWrapper}>
-      <div className={styles.details}>
-        <div className={styles.imgWrapper}>
-              <img
-                src={hospitalImg}
-                alt="hospital imgage"
-              />
-        </div>
-       
-        <div className={styles.hospitalDetails}>
-          <h3>{eachMedicalData['Hospital Name']}</h3>
-          <span>{eachMedicalData.City}, {eachMedicalData.State}, {eachMedicalData["ZIP Code"]}</span>
-          <p>Smilessence Center for Advanced Dentistry + 1</p>
-          <h4><span style={{color:"green", fontWeight: "50px"}}>FREE $550 </span>Consultation fee at clinic</h4>
-        </div>
-      </div>
+      <div className={styles.hospitalCardWrapper}>
+        <div className={styles.details}>
+          <div className={styles.imgWrapper}>
+            <img src={hospitalImg} alt="hospital imgage" />
+          </div>
 
-      <div className={styles.booking}>
-        <h4 style={{color:"green", textAlign:"center", fontWeight : "bolder"} }> Available Today</h4>
-        <Button handlerfun ={handleBooking}>Book FREE Center Visit</Button>
+          <div className={styles.hospitalDetails}>
+            <h3>{eachMedicalData["Hospital Name"]}</h3>
+            <span>
+              {eachMedicalData.City}, {eachMedicalData.State},{" "}
+              {eachMedicalData["ZIP Code"]}
+            </span>
+            <p>Smilessence Center for Advanced Dentistry + 1</p>
+            <h4>
+              <span style={{ color: "green", fontWeight: "50px" }}>
+                FREE $550{" "}
+              </span>
+              Consultation fee at clinic
+            </h4>
+          </div>
+        </div>
+
+        <div className={styles.booking}>
+          {booked ? (
+            <>
+              <span style={{border: "2px solid green", padding: "5px"}}>{eachMedicalData.date}</span>{" "}
+              <span style={{border: "2px solid green", padding: "5px"}}>{eachMedicalData.slot}</span>
+            </>
+          ) : (
+            <>
+              <h4
+                style={{
+                  color: "green",
+                  textAlign: "center",
+                  fontWeight: "bolder",
+                }}
+              >
+                {" "}
+                Available Today
+              </h4>
+              <Button handlerfun={handleBooking}>Book FREE Center Visit</Button>
+            </>
+          )}
+        </div>
       </div>
-    
-    </div>
-     {bookingOpen && <BookingSlots eachMedicalData={eachMedicalData} ></BookingSlots>}
-     </>
+      {bookingOpen && !booked && (
+        <BookingSlots eachMedicalData={eachMedicalData}></BookingSlots>
+      )}
+    </>
   );
 }
 

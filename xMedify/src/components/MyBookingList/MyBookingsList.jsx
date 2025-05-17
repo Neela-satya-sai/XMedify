@@ -1,20 +1,20 @@
 import React from "react";
 import Ad from "../../assets/sensodyne_dweb.png.png";
-import styles from "./HospitalListGrid.module.css";
+import styles from "./MyBookingsList.module.css";
 import HospitalCard from "../HospitalCard/HospitalCard";
 import { useApi } from "../../contextProvider";
 
-function HospitalListGrid() {
-  let { medicalCenters, citySelected, stateSelected, search} = useApi();
+function MyBookingList({booked}) {
+  let { bookings, citySelected, stateSelected, search} = useApi();
     // console.log(medicalCenters);
-  let count = medicalCenters.length;
+  let count = bookings.length;
  
 
   return (
     <>
       {" "}
       <div className={styles.hospitalListGrid_Wrapper}>
-        {stateSelected && citySelected && search && (
+        {/* {stateSelected && citySelected && search && (
           <div className={styles.header_wrapper}>
             <h1>
               {count} medical centers available in {citySelected}
@@ -31,18 +31,19 @@ function HospitalListGrid() {
               </p>
             </div>
           </div>
-        )}
+        )} */}
 
         <div className={styles.gridWrapper}>
-          {stateSelected && citySelected && search &&( <div className={styles.hospitalCard_rapper}>
-            {medicalCenters.map((eachCenter, idx) => 
+           <div className={styles.hospitalCard_rapper}>
+            {bookings.map((eachCenter, idx) => 
               // console.log(eachCenter);
               <HospitalCard
                 key={idx}
                 eachMedicalData={eachCenter}
+                booked={booked}
               ></HospitalCard>
             )}
-          </div>)}
+          </div>
          
 
           <div className={styles.ad}>
@@ -54,4 +55,4 @@ function HospitalListGrid() {
   );
 }
 
-export default HospitalListGrid;
+export default MyBookingList;

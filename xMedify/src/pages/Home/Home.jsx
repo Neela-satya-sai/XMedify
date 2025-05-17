@@ -14,8 +14,8 @@ function Home() {
      <Navbar></Navbar>
     <HeroBanner></HeroBanner>
    <SearchCard ></SearchCard>
-   {/* <HospitalCard></HospitalCard> */}
-   <HospitalListGrid/>
+  
+   <HospitalListGrid />
     </>
    
   )

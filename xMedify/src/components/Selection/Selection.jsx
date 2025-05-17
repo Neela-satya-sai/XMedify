@@ -24,7 +24,7 @@ const Selection = ({
         {data.map((item, idx) => (
           <option key={idx} value={item}>
             {" "}
-            <li>{item}</li>
+            {item}
           </option>
         ))}
       </select>
