@@ -32,67 +32,75 @@ const ContextProvider = ({ children }) => {
       "https://meddata-backend.onrender.com/states",
       setStates
     );
-    const totalBookings = JSON.parse(localStorage.getItem("bookings"));
-
-    setBookings(totalBookings || []);
-
+   
+    const storedBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    setBookings(storedBookings); // Set from local storage
+  
   }, []);
 
-  useEffect(() => {
+  useEffect(() => { //geting cities of a specific state
+    setSearch(false);
+    setMedicalCenters([]);
+    setCities([]);
     if (stateSelected) {
       performApiCall(
         `https://meddata-backend.onrender.com/cities/${stateSelected}`,
         setCities
       );
       setCitySelected("");
-      setCities([]);
+      
       
     }
 
     // console.log("from state");
   }, [stateSelected]);
 
-  // useEffect(() => {
-  //   if ( stateSelected && citySelected) {
-  //     performApiCall(
-  //       `https://meddata-backend.onrender.com/data?state=${stateSelected}&city=${citySelected}`,
-  //       setMedicalCenters
-  //     );
-      
-  //     // setStateSelected("");
-  //     // setCitySelected("");
-      
-
-  //   }
-
-  //   // console.log("from countries");
-  // }, [stateSelected, citySelected]);
-
-
-  function handleSearch(){
+  useEffect(() => {
+    setMedicalCenters([]);
     if ( stateSelected && citySelected) {
-      setSearch(true);
       performApiCall(
         `https://meddata-backend.onrender.com/data?state=${stateSelected}&city=${citySelected}`,
         setMedicalCenters
       );
-      
-      // setStateSelected("");
-      // setCitySelected("");
-      //  console.log(medicalCenters);
+    }
+
+
+  }, [ citySelected]);
+  
+
+    // useEffect(() => {
+    //   if (bookings.length > 0) {  // Prevent unnecessary updates
+    //     let existingBookings = JSON.parse(localStorage.getItem("bookings")) || [];
+    //     localStorage.setItem("bookings", JSON.stringify([...existingBookings, ...bookings]));
+    //   }
+    // }, [bookings]);
+
+
+
+  function handleSearch(){
+    setSearch(true);
+    if ( stateSelected && citySelected ) {
+      setMedicalCenters([]);
+      // setSearch(true);
+      performApiCall(
+        `https://meddata-backend.onrender.com/data?state=${stateSelected}&city=${citySelected}`,
+        setMedicalCenters
+      );
 
     }else{
       enqueueSnackbar("please select both state and city",{variant:"warning"});
     }
     
   }
+
+
   function handleSelection(event, setSelection) {
     console.log(event.target.value);
     setSelection(event.target.value);
   }
 
   return (
-    <ApiContext.Provider value={{ states, cities, setCities, setStates, citySelected, stateSelected, setStateSelected, setCitySelected, medicalCenters, setMedicalCenters, handleSelection , handleSearch, bookings, setBookings}}>
+    <ApiContext.Provider value={{ states, cities, setCities, setStates, citySelected, stateSelected, setStateSelected, setCitySelected, medicalCenters, setMedicalCenters, handleSelection , handleSearch, bookings, setBookings, search, setSearch}}>
       {children}
     </ApiContext.Provider>
   );

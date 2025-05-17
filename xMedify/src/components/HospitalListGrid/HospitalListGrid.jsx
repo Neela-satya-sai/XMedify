@@ -5,7 +5,7 @@ import HospitalCard from "../HospitalCard/HospitalCard";
 import { useApi } from "../../contextProvider";
 
 function HospitalListGrid() {
-  let { medicalCenters, citySelected, stateSelected } = useApi();
+  let { medicalCenters, citySelected, stateSelected, search } = useApi();
     // console.log(medicalCenters);
   let count = medicalCenters.length;
 
@@ -13,7 +13,7 @@ function HospitalListGrid() {
     <>
       {" "}
       <div className={styles.hospitalListGrid_Wrapper}>
-        {stateSelected && citySelected && (
+        {stateSelected && citySelected && search && (
           <div className={styles.header_wrapper}>
             <h1>
               {count} medical centers available in {citySelected}
@@ -33,7 +33,7 @@ function HospitalListGrid() {
         )}
 
         <div className={styles.gridWrapper}>
-          <div className={styles.hospitalCard_rapper}>
+          {stateSelected && citySelected && search &&( <div className={styles.hospitalCard_rapper}>
             {medicalCenters.map((eachCenter, idx) => 
               // console.log(eachCenter);
               <HospitalCard
@@ -41,7 +41,8 @@ function HospitalListGrid() {
                 eachMedicalData={eachCenter}
               ></HospitalCard>
             )}
-          </div>
+          </div>)}
+         
 
           <div className={styles.ad}>
             <img src={Ad} alt="advertising space" />

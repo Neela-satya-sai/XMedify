@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./HospitalCard.module.css";
 import Button from "../Button/Button";
 import hospitalImg from "../../assets/hospitalCardIcons/image 22.png"
@@ -6,6 +6,12 @@ import BookingSlots from "../BookingSlot/BookingSlot";
 
 function HospitalCard({eachMedicalData}) {
     console.log(eachMedicalData);
+    let [bookingOpen, setBookingOpen] = useState(false);
+
+   function handleBooking( ){
+    setBookingOpen(!bookingOpen);
+
+   } 
   return (
     <>
     <div className={styles.hospitalCardWrapper}>
@@ -27,11 +33,11 @@ function HospitalCard({eachMedicalData}) {
 
       <div className={styles.booking}>
         <h4 style={{color:"green", textAlign:"center", fontWeight : "bolder"} }> Available Today</h4>
-        <Button>Book FREE Center Visit</Button>
+        <Button handlerfun ={handleBooking}>Book FREE Center Visit</Button>
       </div>
     
     </div>
-     {<BookingSlots></BookingSlots>}
+     {bookingOpen && <BookingSlots eachMedicalData={eachMedicalData} ></BookingSlots>}
      </>
   );
 }
