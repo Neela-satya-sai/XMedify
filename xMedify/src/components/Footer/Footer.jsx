@@ -13,10 +13,10 @@ import pinterest from "../../assets/pinterest.png";
 import twitter from "../../assets/twitter.png";
 import yt from "../../assets/yt.png";
 import FooterLink from "./FooterLink";
-import styles from "./Footer.module.css";
+
 export default function Footer() {
   return (
-    <Box bgcolor="primary.secondary" pb={3} pt={6} className = {styles.footerwrapper}>
+    <Box bgcolor="primary.secondary" pb={3} pt={6}>
       <Container maxWidth="xl">
         <Grid container spacing={4}>
           <Grid item xs={12} md={4.5}>
