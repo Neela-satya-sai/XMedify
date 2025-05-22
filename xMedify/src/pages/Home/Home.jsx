@@ -4,6 +4,7 @@ import HeroBanner from '../../components/HeroBanner/HeroBanner'
 import SearchCard from '../../components/SearchCard/SearchCard'
 import HospitalListGrid from '../../components/HospitalListGrid/HospitalListGrid'
 import { useApi } from '../../contextProvider'
+import Footer from '../../components/Footer/Footer'
 
 function Home() {
 
@@ -16,6 +17,7 @@ function Home() {
    <SearchCard ></SearchCard>
   
    <HospitalListGrid />
+   <Footer></Footer>
     </>
    
   )
